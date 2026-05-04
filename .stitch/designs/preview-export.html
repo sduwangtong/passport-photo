@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Passport Photo Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#2a3439",
+                        "surface-dim": "#cfdce3",
+                        "background": "#f7f9fb",
+                        "tertiary-container": "#c8d8f3",
+                        "on-tertiary": "#f7f9ff",
+                        "outline": "#717c82",
+                        "secondary": "#2563EB",
+                        "tertiary-dim": "#44546a",
+                        "surface-tint": "#5f5e5e",
+                        "primary-fixed-dim": "#d7d4d3",
+                        "on-secondary": "#faf8ff",
+                        "on-tertiary-fixed-variant": "#46556b",
+                        "on-error": "#fff7f6",
+                        "error-container": "#fe8983",
+                        "error-dim": "#4e0309",
+                        "on-error-container": "#752121",
+                        "primary-container": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#0050d4",
+                        "surface-container-high": "#e1e9ee",
+                        "on-tertiary-fixed": "#29394e",
+                        "secondary-container": "#dbe1ff",
+                        "on-primary-container": "#525151",
+                        "surface-variant": "#d9e4ea",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-container": "#3c4c61",
+                        "tertiary": "#506076",
+                        "on-primary-fixed": "#403f3f",
+                        "tertiary-fixed": "#c8d8f3",
+                        "surface-container-highest": "#d9e4ea",
+                        "surface-container": "#e8eff3",
+                        "surface-container-low": "#f0f4f7",
+                        "on-background": "#2a3439",
+                        "inverse-surface": "#0b0f10",
+                        "primary-dim": "#535252",
+                        "secondary-fixed-dim": "#c7d3ff",
+                        "inverse-primary": "#ffffff",
+                        "on-secondary-container": "#0048bf",
+                        "on-surface-variant": "#566166",
+                        "secondary-dim": "#0049c2",
+                        "on-secondary-fixed": "#003798",
+                        "surface": "#f7f9fb",
+                        "outline-variant": "#a9b4b9",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#5c5b5b",
+                        "tertiary-fixed-dim": "#bacae4",
+                        "on-primary": "#faf7f6",
+                        "secondary-fixed": "#dbe1ff",
+                        "primary": "#5f5e5e",
+                        "inverse-on-surface": "#9a9d9f",
+                        "error": "#9f403d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FFFFFF;
+            color: #0A0A0A;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-white dark:bg-black border-b border-slate-200 dark:border-slate-800">
+<button class="flex items-center gap-1 text-black font-medium text-sm transition-opacity active:opacity-80">
+<span class="material-symbols-outlined text-sm" style="font-size: 16px;">arrow_back</span>
+<span>BACK</span>
+</button>
+<h1 class="font-['Space_Grotesk'] font-bold uppercase tracking-tight text-lg text-black dark:text-white">PREVIEW</h1>
+<button class="text-blue-600 dark:text-blue-500 font-bold hover:bg-slate-50 dark:hover:bg-slate-900 px-2 py-1 transition-colors">
+            SAVE
+        </button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 mt-16 pb-32">
+<!-- Template Info Bar -->
+<div class="bg-[#F8FAFC] px-4 py-3 border-b border-[#E2E8F0]">
+<p class="text-sm font-medium text-[#0A0A0A] font-body">United States — 2 x 2 in (51 x 51 mm)</p>
+</div>
+<!-- Preview Canvas -->
+<div class="flex flex-col items-center justify-center p-8 bg-[#F1F5F9] min-h-[400px]">
+<!-- 4x6 Sheet Container -->
+<div class="relative bg-white border border-[#E2E8F0] shadow-sm w-full max-w-[320px] aspect-[3/2] flex flex-wrap p-2 gap-0 overflow-hidden">
+<!-- Corner Crop Marks (Decorative SVG/Pseudo elements simplified here with divs) -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#94A3B8]"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#94A3B8]"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#94A3B8]"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#94A3B8]"></div>
+<!-- 2x4 Grid of Photos (8 total) -->
+<div class="grid grid-cols-4 grid-rows-2 w-full h-full border border-dashed border-[#CBD5E1]">
+<!-- Photo 1 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClYvBVrhBR8Yzk7elsCBCGK2VXVuVPesn_q7YS7ldCn-ozNiqmthia6s-JAjWDwOXLzreOZmurJMpQWdpfjre1nW-h0VEKsHBDIOJkhvnPvda1k8aJ22YEQBGDiWx-_tTGWCOUI3plcpAYz42yHNtsay1SSy7A7lif0wLWZ1UkdGz7jFvibCDx2x19JqkQqe3DrpA_9BrFGNolI9jFXXCTSxJMOnwFh_oAmk7-4YYx1brCpFKTY6v-h6hNG0syrxwKxHRKYHCoUWuL"/>
+</div>
+<!-- Photo 2 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkRUSuI0n59wdZlJsWoQgZXJIkfuJoqH5wal1CfBks_n2aHU-bmrgIeTfcj0qhmk4WU0UIh6UDJMwiTZByNUNulMWUbAplv7JwdzV81CRgiscBLO4JxLNobUJKex0P-LhS7oLbuChd9Ba7k8QGJgyXDvvbWvFbRgA1z49rDC0K90tHVVemgMW1OE2vjeJEKkD_uXV1HLn-0IUuP-rAFdR5WMi_dNBu7kw113tWxqscrJfaGuvBCHfInYXI_NX5aQCIZA4oPX5tH4Ar"/>
+</div>
+<!-- Photo 3 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1UpWwtIQhR5q6jYrgQN-IAWkOgtOhqLQi6s9S7jyg_vS-WKzuaASRa1gxQBHtnvn5zhh0zgp1TnLLX9YZoqR0yJir5dopLotjaROc1SfSkEEd0Ypjv3mCL8ujyShde2cw-vxV1q4nor5eLp9yTHQHpprhIPMTRtSg793xNpeCRF7bfV-YH7Bckd9emXSS4DssTgsmtLjkoQGgF35Tvmopb66TOcxkogY-BdhqlT-5AjcWOnbsXLkpK5kQ175uzd-8fl-eJ12PQKXN"/>
+</div>
+<!-- Photo 4 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8QZtJGGDLuCDSFgVysdwNzJL-dtOhWpM4Dt0MV2oaIDqUpTNOyR3HonrDCq7_p2k2ysh6z-hN4tH36XAxcu-XiHTiDZXAp2eo-Wi1X1E3UuiJY_59ZzsoN-NKgUAaWMI-n9wjl6b4Irg3uDfufCc4kO9ltImzaBHTBuHCw-eRvbQozLY4biaL-nlDe3_oZCYtcjUcTLPtdep9HZsFWDwcv_1KoUR62YLHa_OoMMJmr8d71oTOpVmb2DJCXRfuvQNJadWLhFDufnur"/>
+</div>
+<!-- Photo 5 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIIblONLJ7_Q68gMK4lhEK2godqsF04LCkWWhVvewaLPeYjNe4IHlSTOD3faOyqQsOZMSYRiU5gi08yUWvHu-_Fb9SnSLc4QNKYkAr0EO2BnFa_lRyZ4w-jaqntoH-2TfIHdjS4hK0jtjcD3d5-U4C1Wv2-AgDk0lw2iHb1wiYYGi9X7XJoAJ6fCpowfytdPKQUPfWT431ytfZr5OodgJe5Jf1AjpgnS_1WxiCfrRTwu6D_BE4qeaKttETfXThO_WiMdlX6yOg781g"/>
+</div>
+<!-- Photo 6 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtxWzRrSnVgwF9dAuDHDfXSxsiwiUyqNUt-zzQ08zsAZI0v9H4-LctiH8EJGLYc9MSuUih4u7iRuRmHOBCJoNjM8LfMTrowOHgvCL0Uao7jLUpJZUGSiSDYa_7h0XhwKMznAUzCnntjIqmlBV01prndwX4Wq-SMp5ybM9igfSwmt_jJ60XMJEGrgaRdpAdh3mMwZs8oV_gZTCHTpkjP-D5BEpkO6Nfe_6zDXhpLj70xJuWX5hY3DzLtXBwt3mW2R860xASkV6L749o"/>
+</div>
+<!-- Photo 7 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQxSjO8pQtmhBQxhfEp-52GJV0JCvEUqS0M-IUObwLhYU5eKk80CHo7pJnVIw5Mz00eSIMLt_hMeVOnAN1lRNjtOj9AhqVPH1m30tou33mvJYKAtNLUGgqF4j5qbzt_Lu3BnS0gPBGRtj8rJJWBP0zfOAVj7I6vY6gvRffmdyCuiHscui5IYaHoszMB1TA7MRIJnOpH007OiOaFXbZOoDvjoN4vOze-8XPzEPDtwGLez_kYVFLLzuTc6zyBO93L7PWxpn6KjuUPe3X"/>
+</div>
+<!-- Photo 8 -->
+<div class="border border-dashed border-[#CBD5E1] flex items-center justify-center p-1 overflow-hidden">
+<img class="w-full aspect-square grayscale contrast-125 object-cover" data-alt="Technical passport photo portrait of a person with a neutral expression on a plain white background, centered composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_4-_A1U9CJdQE0EW4gpQGuwcSYTB18NqriieGQsy7t5DgoJ9zHdWAB2BDp7zJm6fkIGuNmn9Cjaa6VjHvgLZ5ObJc86uCMVMxXgN6JMZd7grDzP94tumTuNxow3bAcmQNNVtL6vRCB1kg7uYnlfZAfcAlRJfhfNJud1WIvr7gHf69OSI5gWakvsE0Jwsul2thQkkl-DpfBwT8jrU9SbsQUo67y_HuH8P_6_ypVbLMPyXQECJzL2j9d-np9tWrrYxJfifTeSkEJh83"/>
+</div>
+</div>
+</div>
+<!-- Sheet Info -->
+<p class="mt-4 text-sm font-body text-[#64748B] tracking-tight">8 photos per sheet (4x6 in)</p>
+</div>
+<!-- Primary Actions -->
+<div class="px-4 py-6 space-y-3">
+<button class="w-full h-[52px] bg-[#2563EB] text-white font-semibold rounded-[4px] active:scale-[0.98] transition-transform">
+                Export to Photos
+            </button>
+<button class="w-full h-[52px] bg-[#0A0A0A] text-white font-semibold rounded-[4px] active:scale-[0.98] transition-transform">
+                Print
+            </button>
+<p class="text-[12px] text-center text-[#64748B] font-body mt-4">
+                Arrange photos for standard 4x6 photo paper
+            </p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 px-6 bg-white dark:bg-black border-t border-slate-200 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 pt-2 active:scale-95 transition-transform hover:text-black dark:hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">CAPTURE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black dark:text-white border-t-2 border-black dark:border-white pt-2 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">GALLERY</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 pt-2 active:scale-95 transition-transform hover:text-black dark:hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">SETTINGS</span>
+</a>
+</nav>
+</body></html>

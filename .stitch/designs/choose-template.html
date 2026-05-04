@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Passport Photo — Choose Template</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#46556b",
+                        "secondary-container": "#dbe1ff",
+                        "error": "#9f403d",
+                        "primary": "#0A0A0A",
+                        "outline-variant": "#a9b4b9",
+                        "primary-fixed-dim": "#d7d4d3",
+                        "on-surface-variant": "#566166",
+                        "on-error-container": "#752121",
+                        "surface-container-highest": "#d9e4ea",
+                        "on-secondary-fixed-variant": "#0050d4",
+                        "on-secondary-fixed": "#003798",
+                        "tertiary-container": "#c8d8f3",
+                        "on-primary-fixed": "#403f3f",
+                        "error-container": "#fe8983",
+                        "inverse-primary": "#ffffff",
+                        "primary-dim": "#535252",
+                        "secondary": "#2563EB",
+                        "secondary-fixed-dim": "#c7d3ff",
+                        "background": "#FFFFFF",
+                        "surface-container-low": "#f0f4f7",
+                        "on-tertiary-container": "#3c4c61",
+                        "on-primary-fixed-variant": "#5c5b5b",
+                        "on-background": "#0A0A0A",
+                        "primary-fixed": "#e5e2e1",
+                        "outline": "#E2E8F0",
+                        "surface-bright": "#f7f9fb",
+                        "surface-variant": "#d9e4ea",
+                        "surface-container": "#e8eff3",
+                        "primary-container": "#e5e2e1",
+                        "inverse-surface": "#0b0f10",
+                        "on-tertiary-fixed": "#29394e",
+                        "tertiary": "#64748B",
+                        "on-primary": "#FFFFFF",
+                        "tertiary-fixed": "#c8d8f3",
+                        "on-surface": "#0A0A0A",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-dim": "#cfdce3",
+                        "surface": "#FFFFFF",
+                        "surface-tint": "#0A0A0A",
+                        "on-secondary": "#FFFFFF",
+                        "surface-container-high": "#e1e9ee",
+                        "on-error": "#fff7f6",
+                        "on-primary-container": "#525151",
+                        "on-secondary-container": "#0048bf",
+                        "error-dim": "#4e0309",
+                        "tertiary-fixed-dim": "#bacae4",
+                        "on-tertiary": "#f7f9ff",
+                        "secondary-dim": "#0049c2",
+                        "secondary-fixed": "#dbe1ff",
+                        "tertiary-dim": "#44546a",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "4px",
+                        "lg": "4px",
+                        "xl": "4px",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full border-b-[1px] border-slate-200 bg-white z-50 flex justify-between items-center h-14 px-4">
+<button class="flex items-center gap-1 text-black font-medium text-sm transition-colors duration-150 ease-in-out hover:bg-slate-50 px-2 py-1 -ml-2">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+<span>BACK</span>
+</button>
+<span class="font-headline font-bold uppercase tracking-tight text-primary text-sm">PASSPORT PHOTO</span>
+<button class="p-2 -mr-2 transition-colors duration-150 ease-in-out hover:bg-slate-50">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</header>
+<main class="pt-20 pb-10 px-4 max-w-2xl mx-auto">
+<!-- Headline -->
+<h1 class="font-headline font-bold text-[24px] text-black mb-6 leading-tight">CHOOSE TEMPLATE</h1>
+<!-- Search Bar -->
+<div class="relative mb-6">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-tertiary">search</span>
+<input class="w-full h-11 pl-10 pr-4 border border-outline rounded-[4px] font-body text-[15px] focus:outline-none focus:border-black transition-colors placeholder:text-tertiary" placeholder="Search countries..." type="text"/>
+</div>
+<!-- Region Filter Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar mb-8 -mx-4 px-4">
+<button class="whitespace-nowrap px-4 py-2 bg-primary text-on-primary text-[14px] font-medium rounded-[4px]">All</button>
+<button class="whitespace-nowrap px-4 py-2 border border-outline text-black text-[14px] font-medium rounded-[4px] hover:bg-slate-50">Asia</button>
+<button class="whitespace-nowrap px-4 py-2 border border-outline text-black text-[14px] font-medium rounded-[4px] hover:bg-slate-50">Europe</button>
+<button class="whitespace-nowrap px-4 py-2 border border-outline text-black text-[14px] font-medium rounded-[4px] hover:bg-slate-50">Americas</button>
+<button class="whitespace-nowrap px-4 py-2 border border-outline text-black text-[14px] font-medium rounded-[4px] hover:bg-slate-50">Africa</button>
+<button class="whitespace-nowrap px-4 py-2 border border-outline text-black text-[14px] font-medium rounded-[4px] hover:bg-slate-50">Oceania</button>
+<button class="whitespace-nowrap px-4 py-2 border border-outline text-black text-[14px] font-medium rounded-[4px] hover:bg-slate-50">Middle East</button>
+</div>
+<!-- Country List -->
+<div class="space-y-0 border-t border-slate-100">
+<!-- Row 1 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of the United States of America with stars and stripes in a clean rectangular frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg_IhSV5ijeY16ik9xAwQ2lR0vK5mGkuGcon8BRVgvlTCTO1-JlCxnNfcRtjsgb-giPp4KFp1TqQdFVbAVrTQUs2Vb4-k4yJ7lvL_jj27BYWXlRMzJ4chaCPfHMaM8xmxBIZrKDP3PbxgNSu2J282j5fmcGHay5oK_KaiC7GCXZ0hf2K3F5bzQdg054PzwdElF-yfDz8UqjmOZ81r-fLdmXUrsur5bWa7z7bPfcyEpqp4Hjl-sFEjJsEFwqdkf5Cd6lgrXHA1mn8D7"/>
+<span class="ml-4 font-medium text-black text-[16px]">United States</span>
+<span class="ml-auto text-tertiary text-[14px]">2 x 2 in</span>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of China featuring five golden stars on a vibrant red rectangular background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANSIij30PgLg2SdnFunxTn_JUUxJRK-b9NA2AjAxztQolVOpG0Kdx8AlaUqRraaf2DmAoUm2502FqH8SZ_9mOMY-IW_zU-Yn7JLLbzBUPgHGe43bzXSn7ZjxnnteAgyHlK23TMV3mqGFrn5fyNl_s5N2tFVVrdbEBqkYE78XShhba9iUUx-qE8suk4_VVC00uyPNPxj3y5R4dl0OtUmrBD0aWmx2A4UrOQLWqJg6-MYwEVHSHAn_vFiVD3HImWG0MpyI9Z0GbD2vtE"/>
+<span class="ml-4 font-medium text-black text-[16px]">China</span>
+<span class="ml-auto text-tertiary text-[14px]">33 x 48 mm</span>
+</div>
+<!-- Row 3 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of Japan showing a red solar disc on a plain white rectangular field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi89s7-5w4_IURZ2dLxuxKknGL_hxS09gFnfP8iGpHxYfoVingrZnzTSROv3i3ateQq4mGOqUwcdDVUdtcCFBHxiDYrylrUlgC4fdUdmTgCx6KfjGdahyXWFQ_cmydVQhv5b96PahbNX3Bvt65U9g8NmCw41BzleK7d5YG0xpdDO3kLET-sPEgp-IwjTxCg901JMl6s3zdwJtDitWSH6wHbpcAeoRiAJzHhuQe5W1mobtWZT-DtcxPZgBX2LWVIdB4XZdbEtmzskhW"/>
+<span class="ml-4 font-medium text-black text-[16px]">Japan</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 45 mm</span>
+</div>
+<!-- Row 4 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of the United Kingdom, the Union Jack, in a crisp rectangular layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASPrvdUKdZ8xP6xlB8WG8fkGDnU110GciKqh9J6PzDCKxLx2leUQN3pSvSlgCbNL5tUcjMSI31DV6uq9AT91eAagvqVo_9ydPEacSZ4TnbNZgBMid5k68Kv97-sW39E0kSRBcrA8yLTrpRDph0_rrLUvFg3CO3ghzcO3ir5FJNozq6wn4dI4v0LHjjwHouEOt9EzTp7NpgGQf-ffG0R2YH666G8sD3idEWrjfi28ojsHDAglo8ArsGREKeyQ_bv0A5OxMOhM4otvtA"/>
+<span class="ml-4 font-medium text-black text-[16px]">United Kingdom</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 45 mm</span>
+</div>
+<!-- Row 5 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of Germany with horizontal bands of black red and gold in a sharp rectangle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYnU3DpxzYmWj7_aCOr5oDxEpZF_fENPuuAZVY2abdIUWQZJOd0muDp26LB-ImX2U6ZGG5LcVAyG055HAWmcRxIxcA6J1aQ5tpR8j7Mm6rrZjS8KWmvqcV4ysv6BoQ5k-QJSFcolQ5FfsZb6zYzb-I3-GgciVftwcj1D1zA7MoPbSPUn8AQ3b5NhH4pdOEQokjl6UyASt3zf3BF-852MB57uX11xW5ujCk_W1t4RazTXw0XFtcTOmi7p4FQg9RGVH3-aNURP0vcynA"/>
+<span class="ml-4 font-medium text-black text-[16px]">Germany</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 45 mm</span>
+</div>
+<!-- Row 6 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of India with saffron white and green bands and the Ashoka Chakra wheel in the center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhZSqYsiRS4or7apF6KS18vsBps5R5GaS8AlWeFd3gCfba7ICB2mM_4TELu_gxhKw_q46X8ewxIA1A2upBFlNTNNotvLl8qK0Bi1pWzvg2n3qMADyZJEZa1K3p_40ToUUg7fywsrtA0MxZ7Dw4WEFkYCZQv9Yg9h7RTJ63P3A3KQLKCHB6yebjNOpw2ATEPOAo0ZdyjUnvaZrbCPyT8SQxkd-q74PnxGWgfcbx70gjt_x20RiifptJ_ltjWiPynEzT78Rz4Pptsc66"/>
+<span class="ml-4 font-medium text-black text-[16px]">India</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 35 mm</span>
+</div>
+<!-- Row 7 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of Canada with red bands and a maple leaf centered on white rectangular field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_9gfBdCZJIUSG9eyEdyIZ7AMB7lIX6pihgPZneYldoXORIxfrjP4JsszL1MTIQjh0fMiQhh3qh70p1kXHxJc4g5M9jRBLPBApjkhXnULggk9jTH-l0ivN_UD4DLJi61JCfeOKVm09jSdw4H62tx4HP3Bc7clVcNbf5T9RZczjBL8p50J-cHyt-_9ODJ4GtrliQAMIzQVeLpIOX2U5QJ5cMvZNSZZMpOE3rInaVdNwp_S0gCu89mDABKX_qbuYtg4CJEWco-969Gkl"/>
+<span class="ml-4 font-medium text-black text-[16px]">Canada</span>
+<span class="ml-auto text-tertiary text-[14px]">50 x 70 mm</span>
+</div>
+<!-- Row 8 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of Australia with the Southern Cross and Union Jack on a blue field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARMGA11IMSeIjXGrp6VywVM9GHKDMkxj7YSBi1ck_PzB3Jyt0mqJAjd0vDHy9Qkb4Buz1hpOjv6sp_gYvGYb6F1pyR154b0e8j-S3ly7VClju1oJgtQYsfEI1v-jZtffFngplwkFXt6TqWN3caohdts9IQm8mlqJUBW8s9PraSqD71m7zWT2OmFL9lXOHUQbj97tomcpa6fRoTHz0MhEsMffQ3G7BnrMlJYoPA8ff-mZ2XD6AbBINGUu82lNdznuhil5egWUvmMkX_"/>
+<span class="ml-4 font-medium text-black text-[16px]">Australia</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 45 mm</span>
+</div>
+<!-- Row 9 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of South Korea featuring the Taegukgi symbol on a white rectangular field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZp0Gkg0l1fFOATHQpfd2gOvexTDqPj5TSXt-fYLa9SA7WMpP9uASzmecuUEa82icxST548CB0TtK4wisJl55EdSDRCJCKW-0_h9afDj2H567hFMVKkncdmotqsaqRf_AEV_BiQkAyNppddAixr9Eqagvr0gWyRBQ_qomAuiMVQtwekFAQaeRgW4mhfq7f74dYtOZTM7Uo4F7xXdcINNTM5P7GnFYFS7uOCLxpdL2x6qhTfJk6UVYZW1RWEZV5SSXsv_Va82ksPJM"/>
+<span class="ml-4 font-medium text-black text-[16px]">South Korea</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 45 mm</span>
+</div>
+<!-- Row 10 -->
+<div class="flex items-center h-16 border-b border-[#F1F5F9] cursor-pointer hover:bg-slate-50 px-2 -mx-2 transition-colors">
+<img alt="Flag" class="w-6 h-4 object-cover border border-slate-200" data-alt="National flag of France with vertical blue white and red stripes in a clean rectangular frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSGUkgaxKFVJziWgOcxt_70pxNrbg-uQbKld1WDzFz_aneawO0OCxlwq6Jkm1vfRyBWsSz2ihqiGForymd-M0-OlzP5oJkGChjFEfd3JWcNkr3jIcpMH3r5L-h5PBBwdyFHwOnNpL2oGxllIaNC6kFUIP8nJ0AsaVGy1-glqVW4G8IaQy9slRn52FLfkVV7Ym-PfIhyGdmuUaKJMfSB_MTthu0FygTybBDTZwDhKlIEyfU94qRzWYf87-iRQjoKQtdl6rHE_6vS1-3"/>
+<span class="ml-4 font-medium text-black text-[16px]">France</span>
+<span class="ml-auto text-tertiary text-[14px]">35 x 45 mm</span>
+</div>
+</div>
+<!-- Accent CTA Section (Primary Only if Applicable) -->
+<div class="mt-8 flex flex-col gap-4">
+<p class="text-[13px] text-tertiary leading-relaxed">
+                Standardised photo dimensions for official documents. Select your destination country to continue to image capture.
+            </p>
+</div>
+</main>
+<!-- Contextual Action Button (Only for main action) -->
+<div class="fixed bottom-6 right-6">
+<button class="bg-secondary text-on-secondary px-6 py-3 font-medium text-sm rounded-[4px] transition-transform active:scale-95 flex items-center gap-2">
+<span>CUSTOM SIZE</span>
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</body></html>

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "passportsnap",
-    "slug": "passportsnap",
+    "name": "Passport Photo",
+    "slug": "passport-photo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,9 +12,16 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.simbinoart.passportphoto",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Passport Photo needs access to your photo library to select a photo for your passport photo sheet.",
+        "NSCameraUsageDescription": "Passport Photo needs access to your camera to take a photo for your passport photo sheet."
+      }
     },
     "android": {
+      "package": "com.simbino.passportphoto",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -24,7 +31,27 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "scheme": "passportphoto",
+    "plugins": [
+      "expo-router",
+      "expo-sharing",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Passport Photo needs access to your photos to create passport photo sheets.",
+          "cameraPermission": "Passport Photo needs access to your camera to take passport photos."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Save passport photo sheets to your library.",
+          "savePhotosPermission": "Save passport photo sheets to your library."
+        }
+      ]
+    ]
   }
 }

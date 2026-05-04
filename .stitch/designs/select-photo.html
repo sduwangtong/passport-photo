@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Select Photo - Passport Photo Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#403f3f",
+                    "inverse-primary": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "secondary-dim": "#0049c2",
+                    "secondary-fixed-dim": "#c7d3ff",
+                    "tertiary-container": "#c8d8f3",
+                    "tertiary": "#506076",
+                    "surface-dim": "#cfdce3",
+                    "on-surface": "#2a3439",
+                    "on-tertiary-fixed-variant": "#46556b",
+                    "on-tertiary": "#f7f9ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "secondary": "#0053dc",
+                    "tertiary-fixed": "#c8d8f3",
+                    "outline": "#717c82",
+                    "on-background": "#2a3439",
+                    "on-tertiary-container": "#3c4c61",
+                    "on-secondary-fixed-variant": "#0050d4",
+                    "error": "#9f403d",
+                    "on-secondary-container": "#0048bf",
+                    "primary-fixed": "#e5e2e1",
+                    "on-primary-container": "#525151",
+                    "error-dim": "#4e0309",
+                    "on-error-container": "#752121",
+                    "background": "#f7f9fb",
+                    "primary-container": "#e5e2e1",
+                    "secondary-container": "#dbe1ff",
+                    "surface-variant": "#d9e4ea",
+                    "surface-container": "#e8eff3",
+                    "on-error": "#fff7f6",
+                    "surface-container-low": "#f0f4f7",
+                    "tertiary-dim": "#44546a",
+                    "surface-tint": "#5f5e5e",
+                    "primary-dim": "#535252",
+                    "on-primary-fixed-variant": "#5c5b5b",
+                    "on-primary": "#faf7f6",
+                    "surface-container-highest": "#d9e4ea",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#566166",
+                    "primary": "#5f5e5e",
+                    "on-secondary": "#faf8ff",
+                    "inverse-on-surface": "#9a9d9f",
+                    "error-container": "#fe8983",
+                    "tertiary-fixed-dim": "#bacae4",
+                    "on-tertiary-fixed": "#29394e",
+                    "primary-fixed-dim": "#d7d4d3",
+                    "on-secondary-fixed": "#003798",
+                    "surface-container-high": "#e1e9ee",
+                    "outline-variant": "#a9b4b9",
+                    "inverse-surface": "#0b0f10"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-white text-[#0A0A0A] min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-black border-b border-[#E2E8F0] dark:border-[#1E293B] flex justify-between items-center px-4 py-3 w-full">
+<div class="flex items-center gap-3">
+<button class="transition-colors duration-150 hover:bg-[#F8FAFC] dark:hover:bg-[#1E293B] p-2 rounded">
+<span class="material-symbols-outlined text-[#0A0A0A] dark:text-white" data-icon="menu">menu</span>
+</button>
+<h1 class="text-lg font-bold tracking-tighter text-[#0A0A0A] dark:text-white font-['Space_Grotesk'] uppercase">PASSPORT PHOTO</h1>
+</div>
+<button class="transition-colors duration-150 hover:bg-[#F8FAFC] dark:hover:bg-[#1E293B] p-2 rounded">
+<span class="material-symbols-outlined text-[#0A0A0A] dark:text-white" data-icon="account_circle">account_circle</span>
+</button>
+</header>
+<main class="flex-grow pt-20 pb-24 px-6 max-w-xl mx-auto w-full flex flex-col">
+<!-- Hero Section -->
+<section class="mt-8 mb-10">
+<h2 class="text-[28px] font-headline font-bold leading-tight mb-2">Select Your Photo</h2>
+<p class="text-[15px] font-body text-[#64748B] leading-relaxed">Choose a front-facing photo with a plain background for best results.</p>
+</section>
+<!-- Photo Area -->
+<div class="flex justify-center mb-12">
+<div class="w-[280px] h-[360px] border border-[#E2E8F0] rounded-[4px] bg-[#F8FAFC] flex flex-col items-center justify-center gap-4 group cursor-pointer transition-colors hover:border-[#2563EB]">
+<span class="material-symbols-outlined text-[#64748B] text-4xl" data-icon="photo_camera">photo_camera</span>
+<span class="text-[#64748B] font-body text-sm font-medium">No photo selected</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<button class="w-full h-[52px] bg-[#0A0A0A] text-white font-body font-bold rounded-[4px] flex items-center justify-center gap-2 hover:bg-[#222222] transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-white" data-icon="add_a_photo">add_a_photo</span>
+                Take Photo
+            </button>
+<button class="w-full h-[52px] bg-white text-[#0A0A0A] border border-[#0A0A0A] font-body font-bold rounded-[4px] flex items-center justify-center gap-2 hover:bg-[#F8FAFC] transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-[#0A0A0A]" data-icon="image">image</span>
+                Choose from Library
+            </button>
+</div>
+<!-- Meta Info -->
+<div class="mt-12 text-center">
+<span class="text-[12px] font-body text-[#64748B] uppercase tracking-wider">Supported formats: JPG, PNG</span>
+</div>
+<!-- Extra Enterprise Context (Bento Style Sub-info) -->
+<div class="mt-auto pt-12 grid grid-cols-2 gap-4">
+<div class="p-4 border border-[#E2E8F0] rounded-[4px]">
+<h4 class="text-[11px] font-bold text-[#64748B] uppercase tracking-widest mb-2">Compliance</h4>
+<p class="text-xs font-body text-[#0A0A0A]">ISO/IEC 19794-5 standards applied automatically.</p>
+</div>
+<div class="p-4 border border-[#E2E8F0] rounded-[4px]">
+<h4 class="text-[11px] font-bold text-[#64748B] uppercase tracking-widest mb-2">Privacy</h4>
+<p class="text-xs font-body text-[#0A0A0A]">On-device processing. No photos stored on cloud.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-white dark:bg-black px-6 border-t border-[#E2E8F0] dark:border-[#1E293B] z-50">
+<!-- Tab: CAPTURE (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-[#2563EB] border-t-2 border-[#2563EB] pt-2 pb-safe transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="photo_camera" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">CAPTURE</span>
+</a>
+<!-- Tab: ORDERS -->
+<a class="flex flex-col items-center justify-center text-[#64748B] dark:text-[#94A3B8] pt-2 pb-safe transition-all duration-200 ease-in-out hover:text-[#0A0A0A] dark:hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">ORDERS</span>
+</a>
+<!-- Tab: SETTINGS -->
+<a class="flex flex-col items-center justify-center text-[#64748B] dark:text-[#94A3B8] pt-2 pb-safe transition-all duration-200 ease-in-out hover:text-[#0A0A0A] dark:hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">SETTINGS</span>
+</a>
+</nav>
+</body></html>
