@@ -1,5 +1,14 @@
-import { View, Text, StyleSheet, ScrollView, useWindowDimensions, Platform, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  useWindowDimensions,
+  Platform,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
+import { useLocalSearchParams, router } from 'expo-router';
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { captureRef } from 'react-native-view-shot';
 import * as Sharing from 'expo-sharing';
@@ -10,16 +19,14 @@ import { paperSizes } from '../data/paperSizes';
 import { calculateGrid } from '../utils/tiling';
 import { processPhoto } from '../utils/imageProcessor';
 import { generatePrintHTML } from '../utils/printGenerator';
-import { processWithAI } from '../utils/aiProcessor';
+import { buildPdfFilename } from '../utils/pdfExport';
+import { photoStore } from '../utils/photoStore';
 import PhotoGrid from '../components/PhotoGrid';
 import ExportActions from '../components/ExportActions';
 import { colors, radii } from '../theme';
 
 export default function PreviewScreen() {
-  const { photoUri, photoWidth, photoHeight, templateId, paperId } = useLocalSearchParams<{
-    photoUri: string;
-    photoWidth: string;
-    photoHeight: string;
+  const { templateId, paperId } = useLocalSearchParams<{
     templateId: string;
     paperId: string;
   }>();
@@ -32,73 +39,43 @@ export default function PreviewScreen() {
   const containerWidth = screenWidth - 48;
   const gridRef = useRef<View>(null);
 
+  const stored = photoStore.get();
   const [loading, setLoading] = useState(false);
-  const [base64Image, setBase64Image] = useState<string | null>(null);
-  const [aiProcessing, setAiProcessing] = useState(false);
-  const [aiError, setAiError] = useState<string | null>(null);
+  const [base64Image, setBase64Image] = useState<string | null>(
+    stored?.enhancedBase64 ?? null,
+  );
+  const [withCutLines, setWithCutLines] = useState(true);
 
-  // Local crop/resize first, then AI enhancement
   useEffect(() => {
     let cancelled = false;
-
-    async function process() {
-      // Step 1: local processing (instant)
-      const localResult = await processPhoto(
-        photoUri!,
+    async function ensureBase64() {
+      if (base64Image) return;
+      if (!stored) {
+        router.replace('/');
+        return;
+      }
+      const local = await processPhoto(
+        stored.sourceUri,
         template.widthInch,
         template.heightInch,
-        Number(photoWidth),
-        Number(photoHeight),
+        stored.photoWidth,
+        stored.photoHeight,
       );
       if (cancelled) return;
-      setBase64Image(localResult);
-
-      // Step 2: AI enhancement
-      setAiProcessing(true);
-      setAiError(null);
-      try {
-        const aiResult = await processWithAI(
-          localResult,
-          template.name,
-          template.widthMM,
-          template.heightMM,
-        );
-        if (!cancelled) setBase64Image(aiResult);
-      } catch (e: any) {
-        if (!cancelled) setAiError(e.message || 'AI processing failed');
-      } finally {
-        if (!cancelled) setAiProcessing(false);
-      }
+      setBase64Image(local);
+      photoStore.patch({ enhancedBase64: local });
     }
-
-    process();
-    return () => { cancelled = true; };
-  }, [photoUri, template, photoWidth, photoHeight]);
-
-  const retryAI = useCallback(async () => {
-    if (!base64Image) return;
-    setAiProcessing(true);
-    setAiError(null);
-    try {
-      const aiResult = await processWithAI(
-        base64Image,
-        template.name,
-        template.widthMM,
-        template.heightMM,
-      );
-      setBase64Image(aiResult);
-    } catch (e: any) {
-      setAiError(e.message || 'AI processing failed');
-    } finally {
-      setAiProcessing(false);
-    }
-  }, [base64Image, template]);
+    ensureBase64();
+    return () => {
+      cancelled = true;
+    };
+  }, [base64Image, stored, template]);
 
   const handlePrint = useCallback(async () => {
     if (!base64Image) return;
     setLoading(true);
     try {
-      const html = generatePrintHTML(base64Image, template, paper);
+      const html = generatePrintHTML(base64Image, template, paper, { cutLines: withCutLines });
       if (Platform.OS === 'web') {
         const { printHTML } = await import('../utils/webExport');
         printHTML(html);
@@ -111,7 +88,38 @@ export default function PreviewScreen() {
     } finally {
       setLoading(false);
     }
-  }, [base64Image, template, paper]);
+  }, [base64Image, template, paper, withCutLines]);
+
+  const handleSavePDF = useCallback(async () => {
+    if (!base64Image) return;
+    setLoading(true);
+    try {
+      const html = generatePrintHTML(base64Image, template, paper, { cutLines: withCutLines });
+      const filename = buildPdfFilename(template, paper, grid.total);
+      if (Platform.OS === 'web') {
+        // No printToFile on web — just trigger the print dialog where the user can pick "Save as PDF".
+        const { printHTML } = await import('../utils/webExport');
+        printHTML(html);
+      } else {
+        const Print = await import('expo-print');
+        const { uri } = await Print.printToFileAsync({ html });
+        const isShareAvailable = await Sharing.isAvailableAsync();
+        if (isShareAvailable) {
+          await Sharing.shareAsync(uri, {
+            mimeType: 'application/pdf',
+            dialogTitle: filename,
+            UTI: 'com.adobe.pdf',
+          });
+        } else {
+          Alert.alert('PDF Saved', `Saved to ${uri}`);
+        }
+      }
+    } catch (e: any) {
+      Alert.alert('Save PDF Error', e.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [base64Image, template, paper, withCutLines, grid.total]);
 
   const handleExport = useCallback(
     async (format: 'jpg' | 'png') => {
@@ -122,7 +130,6 @@ export default function PreviewScreen() {
           const { downloadImage } = await import('../utils/webExport');
           await downloadImage(base64Image, template, paper, format);
         } else {
-          // Native: capture the grid view as an image
           if (!gridRef.current) {
             Alert.alert('Error', 'Grid not ready');
             return;
@@ -152,39 +159,20 @@ export default function PreviewScreen() {
     [base64Image, template, paper],
   );
 
-  const displayUri = base64Image || photoUri!;
+  const displayUri = base64Image || stored?.sourceUri || '';
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Template info bar */}
       <View style={styles.infoBar}>
         <Text style={styles.infoText}>
           {template.name} -- {template.widthMM} x {template.heightMM} mm
         </Text>
       </View>
 
-      {/* AI status */}
-      {aiProcessing && (
-        <View style={styles.aiStatus}>
-          <ActivityIndicator size="small" color={colors.accent} />
-          <Text style={styles.aiStatusText}>AI is enhancing your photo...</Text>
-        </View>
-      )}
-      {aiError && (
-        <View style={styles.aiStatus}>
-          <Text style={styles.aiErrorText}>AI failed: {aiError}</Text>
-          <TouchableOpacity onPress={retryAI} style={styles.retryButton}>
-            <Text style={styles.retryText}>Retry</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-
-      {/* Photo count */}
       <Text style={styles.countText}>
         {grid.total} photos per sheet ({paper.name})
       </Text>
 
-      {/* Preview */}
       <View style={styles.previewContainer}>
         <View ref={gridRef} collapsable={false}>
           <PhotoGrid
@@ -192,14 +180,26 @@ export default function PreviewScreen() {
             template={template}
             paperSize={paper}
             containerWidth={containerWidth}
+            cutLines={withCutLines}
           />
         </View>
       </View>
 
-      {/* Actions */}
+      <TouchableOpacity
+        style={styles.toggle}
+        onPress={() => setWithCutLines((v) => !v)}
+        activeOpacity={0.8}
+      >
+        <View style={[styles.checkbox, withCutLines && styles.checkboxOn]}>
+          {withCutLines && <View style={styles.checkmark} />}
+        </View>
+        <Text style={styles.toggleText}>Print cut-line guides</Text>
+      </TouchableOpacity>
+
       <View style={styles.actions}>
         <ExportActions
           onPrint={handlePrint}
+          onSavePDF={handleSavePDF}
           onExportJPG={() => handleExport('jpg')}
           onExportPNG={() => handleExport('png')}
           loading={loading}
@@ -214,14 +214,8 @@ export default function PreviewScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: 24,
-    paddingBottom: 40,
-  },
+  container: { flex: 1, backgroundColor: colors.background },
+  content: { padding: 24, paddingBottom: 40 },
   infoBar: {
     backgroundColor: colors.surface,
     padding: 12,
@@ -230,56 +224,34 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     marginBottom: 8,
   },
-  infoText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: colors.primary,
-  },
-  aiStatus: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    paddingVertical: 8,
-  },
-  aiStatusText: {
-    fontSize: 13,
-    color: colors.accent,
-    fontWeight: '500',
-  },
-  aiErrorText: {
-    fontSize: 13,
-    color: '#DC2626',
-    flex: 1,
-  },
-  retryButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: colors.primary,
-    borderRadius: radii.sm,
-  },
-  retryText: {
-    color: colors.white,
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  countText: {
-    fontSize: 14,
-    color: colors.slate,
-    marginBottom: 16,
-  },
+  infoText: { fontSize: 14, fontWeight: '500', color: colors.primary },
+  countText: { fontSize: 14, color: colors.slate, marginBottom: 16 },
   previewContainer: {
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 16,
     backgroundColor: colors.divider,
     padding: 16,
     borderRadius: radii.sm,
   },
-  actions: {
-    marginBottom: 16,
+  toggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 12,
+    marginBottom: 8,
   },
-  dimensions: {
-    textAlign: 'center',
-    fontSize: 12,
-    color: colors.slate,
+  checkbox: {
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    borderWidth: 1.5,
+    borderColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  checkboxOn: { backgroundColor: colors.primary },
+  checkmark: { width: 10, height: 10, backgroundColor: colors.white, borderRadius: 1 },
+  toggleText: { fontSize: 14, color: colors.primary, fontWeight: '500' },
+  actions: { marginBottom: 16 },
+  dimensions: { textAlign: 'center', fontSize: 12, color: colors.slate },
 });

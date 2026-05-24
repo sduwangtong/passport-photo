@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "date": "2026-05-24",
+    "judge": "Claude Opus 4.7 (vision)",
+    "test_photo": "e2e/fixtures/test-photo.jpg (single-face StyleGAN portrait, 1024x1024)",
+    "api_key_used": "<REDACTED — see .env.local> (live, both flash-lite + flash-image confirmed)",
+    "live_gemini_calls": 3,
+    "test_runtime_seconds": 18.8,
+    "bugs_fixed_to_unblock_ai_path": [
+      "aiProcessor.ts pointed at Vertex AI (aiplatform.googleapis.com) which requires OAuth, not API key — switched to generativelanguage.googleapis.com",
+      "Response parser only handled snake_case (inline_data/mime_type); live endpoint returns camelCase — accept both",
+      "Metro cache had stale env-var inlining; cleared and rebuilt",
+      "Playwright raced past AI completion because verdict badge was already visible from prior call — wait on spinner appear/disappear + compare-toggle visibility instead",
+      "Image-gen prompt rewritten to enforce identity preservation + pure white background"
+    ]
+  },
+  "summary": {
+    "screens_verified": 9,
+    "screens_passing_requirement": 9,
+    "acceptance_met": true
+  },
+  "screens": [
+    {
+      "slug": "01-home",
+      "requirement": "Picker landing with two clear CTAs (Take Photo, Choose from Library), supported-formats info, no upsell",
+      "verified": true,
+      "evidence": "Bold 'Select Your Photo' headline, Take Photo (black) + Choose from Library (outline), 'SUPPORTED FORMATS: JPG, PNG' footer in tracked typography. No subscription nag."
+    },
+    {
+      "slug": "02-template-default",
+      "requirement": "Country list (US/EU/CN) + paper size toggle + live photos-per-sheet count + Check Compliance CTA",
+      "verified": true,
+      "evidence": "'15 photos per US Letter (3 x 5)' with US default selected. EU/Schengen and China cards visible with mm dims. US Letter paper chip selected, A4 also tappable. 'Check Compliance' CTA at the bottom."
+    },
+    {
+      "slug": "03-compliance-verdict",
+      "requirement": "Real Gemini verdict against country rules, severity badge, codified issues with codes + plain-language messages + concrete remediations, action CTAs",
+      "verified": true,
+      "evidence": "Live verdict from gemini-2.5-flash-lite (200 OK). WARNINGS badge. Summary 'The background is not plain white and has some shadows.' Issues: BG_NOT_WHITE ('Stand in front of a plain white or light wall'), SHADOW_ON_BG ('Step a foot or two away from the wall behind you'). Auto-fix with AI (blue) + Continue to Preview (black)."
+    },
+    {
+      "slug": "04-after-autofix",
+      "requirement": "After clicking Auto-fix, the photo has been REPLACED by an AI-generated version visibly different from the input, AFTER chip overlay, 'View original' link visible",
+      "verified": true,
+      "evidence": "Live image-gen call to gemini-2.5-flash-image returned a PNG (200 OK; C2PA manifest header confirms Gemini provenance). On-screen photo now shows a noticeably cleaner near-white background vs. the input's off-white-with-shadows. Identity preserved. AFTER chip top-left. 'View original' link below the photo. Auto re-check ran (3rd Gemini call) and surfaces residual BG_NOT_UNIFORM — honest about imperfection."
+    },
+    {
+      "slug": "05-compare-original",
+      "requirement": "BEFORE chip overlay, original photo shown, 'View AI-enhanced' link",
+      "verified": true,
+      "evidence": "Toggle clicked once — photo swapped back to the original input (visible off-white background restored). BEFORE chip top-left. Link reads 'View AI-enhanced'."
+    },
+    {
+      "slug": "06-compare-enhanced",
+      "requirement": "AFTER chip overlay, AI-enhanced photo shown, 'View original' link",
+      "verified": true,
+      "evidence": "Toggle clicked again — photo swapped back to the AI-enhanced version. AFTER chip top-left. Link reads 'View original'."
+    },
+    {
+      "slug": "07-preview",
+      "requirement": "Printable sheet: 15 tiles of the AI-enhanced photo, cut-line guides visible, all 4 export actions",
+      "verified": true,
+      "evidence": "3x5 grid (15 tiles) of the AI-ENHANCED photo (not the input). `+` cut-line corner ticks at every tile. 'United States -- 51 x 51 mm' info bar. '15 photos per sheet (US Letter)' count. Four action buttons: Print Now (blue accent), Save as PDF, Save to Photos, Share PNG."
+    },
+    {
+      "slug": "08-preview-no-cutlines",
+      "requirement": "Cut-line toggle visibly changes the preview (ticks gone)",
+      "verified": true,
+      "evidence": "Same 15-tile sheet with cut-line corner ticks removed. Checkbox unchecked. Toggle has visible effect."
+    },
+    {
+      "slug": "09-print-popup",
+      "requirement": "Printable popup opens with photos tiled at correct paper dimensions + bold cut marks; uses the AI-enhanced photo",
+      "verified": true,
+      "evidence": "New tab with 3x5 tiled AI-enhanced photos on a white sheet. Dark 1pt corner cut ticks at every tile. No browser chrome bleeding into the sheet — ready to print on US Letter."
+    }
+  ]
+}

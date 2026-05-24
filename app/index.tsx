@@ -3,6 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { colors, radii } from '../theme';
+import { photoStore } from '../utils/photoStore';
 
 export default function PhotoPickerScreen() {
   const [loading, setLoading] = useState(false);
@@ -30,14 +31,12 @@ export default function PhotoPickerScreen() {
 
       if (!result.canceled && result.assets[0]) {
         const asset = result.assets[0];
-        router.push({
-          pathname: '/template',
-          params: {
-            photoUri: asset.uri,
-            photoWidth: String(asset.width),
-            photoHeight: String(asset.height),
-          },
+        photoStore.set({
+          sourceUri: asset.uri,
+          photoWidth: asset.width,
+          photoHeight: asset.height,
         });
+        router.push({ pathname: '/template' });
       }
     } finally {
       setLoading(false);

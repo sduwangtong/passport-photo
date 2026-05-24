@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compliance Check - Passport Photo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#c8d8f3",
+                        "on-primary-fixed-variant": "#5c5b5b",
+                        "tertiary-fixed": "#c8d8f3",
+                        "tertiary": "#506076",
+                        "outline-variant": "#a9b4b9",
+                        "on-primary-fixed": "#403f3f",
+                        "inverse-primary": "#ffffff",
+                        "on-secondary-container": "#0048bf",
+                        "on-surface-variant": "#566166",
+                        "secondary": "#0053dc",
+                        "on-error-container": "#752121",
+                        "inverse-surface": "#0b0f10",
+                        "surface-container-high": "#e1e9ee",
+                        "on-tertiary": "#f7f9ff",
+                        "on-tertiary-fixed": "#29394e",
+                        "surface-variant": "#d9e4ea",
+                        "surface-dim": "#cfdce3",
+                        "on-primary-container": "#525151",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-tint": "#5f5e5e",
+                        "outline": "#717c82",
+                        "inverse-on-surface": "#9a9d9f",
+                        "on-secondary-fixed": "#003798",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-surface": "#2a3439",
+                        "error-dim": "#4e0309",
+                        "surface-container": "#e8eff3",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#d9e4ea",
+                        "error": "#9f403d",
+                        "on-secondary": "#faf8ff",
+                        "primary-container": "#e5e2e1",
+                        "primary": "#5f5e5e",
+                        "primary-dim": "#535252",
+                        "secondary-dim": "#0049c2",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#bacae4",
+                        "on-secondary-fixed-variant": "#0050d4",
+                        "on-primary": "#faf7f6",
+                        "secondary-container": "#dbe1ff",
+                        "tertiary-dim": "#44546a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#46556b",
+                        "secondary-fixed-dim": "#c7d3ff",
+                        "on-error": "#fff7f6",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed-dim": "#d7d4d3",
+                        "surface-container-low": "#f0f4f7",
+                        "error-container": "#fe8983",
+                        "on-tertiary-container": "#3c4c61",
+                        "on-background": "#2a3439"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "4px",
+                        "lg": "4px",
+                        "xl": "4px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .guide-line { mix-blend-mode: overlay; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-white text-[#0A0A0A] min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white border-b border-[#E2E8F0] flex justify-between items-center px-4 py-3 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#0A0A0A]">menu</span>
+<h1 class="text-lg font-bold tracking-tighter text-[#0A0A0A] font-headline uppercase">PASSPORT PHOTO</h1>
+</div>
+<span class="material-symbols-outlined text-[#0A0A0A]">account_circle</span>
+</header>
+<main class="pt-16 px-4 max-w-lg mx-auto">
+<!-- Info Bar -->
+<div class="mt-6 p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded flex items-center gap-3">
+<div class="w-8 h-6 bg-[#0A0A0A] flex items-center justify-center text-white text-[10px] font-bold rounded-sm">US</div>
+<div class="flex flex-col">
+<span class="text-[12px] font-bold text-[#0A0A0A] font-headline">United States</span>
+<span class="text-[11px] text-[#64748B]">51 x 51 mm</span>
+</div>
+</div>
+<!-- Photo Preview Area -->
+<div class="mt-8 flex justify-center">
+<div class="relative w-[260px] h-[320px] bg-slate-100 overflow-hidden border border-[#E2E8F0] shadow-sm">
+<!-- Portrait Image -->
+<img alt="User Portrait" class="w-full h-full object-cover" data-alt="A professional studio portrait of a woman with a neutral expression, positioned for a passport photo. She has dark hair and is wearing a dark blazer. The lighting is slightly uneven, casting faint shadows on the off-white wall behind her. The photo is captured in a clean, enterprise-utility style with high contrast and sharp focus, maintaining a serious and formal tone suitable for official identification." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDlupY77iYlPiorUomJujVlQckywG4zpfE8vUxmwq0Wc6IUU1TG98hHiXNnD4dDlaD6BQgr69nirpvcH0neHu40TJGIBd-fKpaMQkj1QCao_zsY3gI2W4zjzSTooROTAsw0lJfX1_1wchPFeKEwDh0imqSWxmBqFWN41DjVnADCTUkoDZEjUITjZi4wcnEWESeBTc3G42kDWP8eS4-Fk3c_GoKSA-OPacmvu6Oczi4doOxtfcR8iWKc9fuaDpVAN57rqBGuNcinXdY"/>
+<!-- Compliance Overlay Guides -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Head Guide -->
+<div class="absolute top-[15%] left-1/2 -translate-x-1/2 w-32 h-44 border border-black/40 rounded-full guide-line"></div>
+<!-- Eye Line -->
+<div class="absolute top-[40%] w-full border-t border-dashed border-black/20"></div>
+<!-- Chin Line -->
+<div class="absolute bottom-[25%] w-full border-t border-dashed border-black/20"></div>
+</div>
+</div>
+</div>
+<!-- Status & Issues -->
+<div class="mt-8 space-y-4">
+<div class="flex items-center gap-3">
+<span class="bg-[#D97706] text-white text-[10px] font-bold tracking-widest px-2 py-1 rounded-full uppercase">WARNINGS</span>
+<p class="text-[13px] font-medium text-[#0A0A0A]">Background is uneven and head is off-center.</p>
+</div>
+<!-- Issue List -->
+<div class="border-t border-[#E2E8F0]">
+<!-- Row 1 -->
+<div class="py-3 flex items-start gap-3 border-b border-[#F8FAFC]">
+<div class="w-2 h-2 rounded-full bg-[#D97706] mt-1.5 flex-shrink-0"></div>
+<div class="flex flex-col">
+<span class="text-[11px] font-bold text-[#64748B] tracking-tight">BG_NOT_UNIFORM</span>
+<span class="text-[13px] text-[#0A0A0A]">Shadows visible on background</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="py-3 flex items-start gap-3 border-b border-[#F8FAFC]">
+<div class="w-2 h-2 rounded-full bg-[#D97706] mt-1.5 flex-shrink-0"></div>
+<div class="flex flex-col">
+<span class="text-[11px] font-bold text-[#64748B] tracking-tight">HEAD_NOT_CENTERED</span>
+<span class="text-[13px] text-[#0A0A0A]">Head leans left of frame</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Stack -->
+<div class="mt-8 flex flex-col gap-3">
+<button class="w-full bg-[#2563EB] text-white py-4 text-sm font-bold uppercase tracking-wider hover:bg-blue-700 transition-colors">
+                Auto-fix with AI
+            </button>
+<button class="w-full bg-[#0A0A0A] text-white py-4 text-sm font-bold uppercase tracking-wider hover:bg-zinc-800 transition-colors">
+                Continue to Preview
+            </button>
+<button class="w-full bg-transparent text-[#64748B] py-3 text-xs font-bold uppercase tracking-widest hover:text-[#0A0A0A] transition-colors">
+                Try another photo
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-white border-t border-[#E2E8F0] px-6 z-50">
+<div class="flex flex-col items-center justify-center text-[#2563EB] border-t-2 border-[#2563EB] pt-2 pb-safe cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest">CAPTURE</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#64748B] pt-2 pb-safe cursor-pointer hover:text-[#0A0A0A] transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest">ORDERS</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#64748B] pt-2 pb-safe cursor-pointer hover:text-[#0A0A0A] transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest">SETTINGS</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for the auto-fix button
+        const fixButton = document.querySelector('button:first-of-type');
+        fixButton.addEventListener('click', function() {
+            this.innerText = 'FIXING...';
+            this.disabled = true;
+            this.classList.add('opacity-80');
+            setTimeout(() => {
+                this.innerText = 'COMPLETED';
+                this.classList.replace('bg-[#2563EB]', 'bg-green-600');
+            }, 1200);
+        });
+    </script>
+</body></html>

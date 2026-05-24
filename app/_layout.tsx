@@ -21,6 +21,7 @@ export default function RootLayout() {
           options={{ title: 'PASSPORT PHOTO', headerBackVisible: false }}
         />
         <Stack.Screen name="template" options={{ title: 'SELECT COUNTRY' }} />
+        <Stack.Screen name="compliance" options={{ title: 'COMPLIANCE CHECK' }} />
         <Stack.Screen name="preview" options={{ title: 'PREVIEW' }} />
       </Stack>
     </>

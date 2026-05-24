@@ -3,12 +3,19 @@ import { colors, radii } from '../theme';
 
 interface Props {
   onPrint: () => void;
+  onSavePDF: () => void;
   onExportJPG: () => void;
   onExportPNG: () => void;
   loading: boolean;
 }
 
-export default function ExportActions({ onPrint, onExportJPG, onExportPNG, loading }: Props) {
+export default function ExportActions({
+  onPrint,
+  onSavePDF,
+  onExportJPG,
+  onExportPNG,
+  loading,
+}: Props) {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -20,12 +27,16 @@ export default function ExportActions({ onPrint, onExportJPG, onExportPNG, loadi
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={[styles.button, styles.accentButton]} onPress={onExportJPG} activeOpacity={0.8}>
-        <Text style={styles.accentButtonText}>Save to Photos</Text>
+      <TouchableOpacity style={[styles.button, styles.accentButton]} onPress={onPrint} activeOpacity={0.8}>
+        <Text style={styles.accentButtonText}>Print Now</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button, styles.primaryButton]} onPress={onPrint} activeOpacity={0.8}>
-        <Text style={styles.primaryButtonText}>Print</Text>
+      <TouchableOpacity style={[styles.button, styles.primaryButton]} onPress={onSavePDF} activeOpacity={0.8}>
+        <Text style={styles.primaryButtonText}>Save as PDF</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.button, styles.outlineButton]} onPress={onExportJPG} activeOpacity={0.8}>
+        <Text style={styles.outlineButtonText}>Save to Photos</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={[styles.button, styles.outlineButton]} onPress={onExportPNG} activeOpacity={0.8}>

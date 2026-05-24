@@ -52,7 +52,16 @@ Bold, authoritative, no-nonsense utility app. Enterprise SaaS feel (Vercel, Line
 |---|---|---|
 | Select Photo | `c10fc67e95a9445084e38b4778d94c49` | `.stitch/designs/select-photo.html` |
 | Choose Template | `f739c5cc0c5b442b86449a9dd9d02a23` | `.stitch/designs/choose-template.html` |
+| Compliance Check (Warn) | `111ad0692a6c4defa49655f67cff1786` | `.stitch/designs/compliance-check.html` |
 | Preview & Export | `51fad187aed941bdb9b155bccb53cc65` | `.stitch/designs/preview-export.html` |
+
+## Compliance Check Severity States
+
+| State | Badge Color | Suggested Action | Primary CTA |
+|---|---|---|---|
+| Pass | `#16A34A` (green) | `use_as_is` | "Continue to Preview" (black) |
+| Warn | `#D97706` (amber) | `auto_fix` | "Auto-fix with AI" (blue #2563EB) then black "Continue" |
+| Fail | `#DC2626` (red) | `retake` | "Try another photo" + outline "Continue anyway" |
 
 ## Rules
 
